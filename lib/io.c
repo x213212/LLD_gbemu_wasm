@@ -24,8 +24,7 @@ u8 io_read(u16 address) {
     }
 
     if (BETWEEN(address, 0xFF10, 0xFF3F)) {
-        //ignore sound
-        return 0;
+        return audio_read(address); // 調用音訊模組的讀取函數
     }
 
     if (BETWEEN(address, 0xFF40, 0xFF4B)) {
@@ -62,8 +61,9 @@ void io_write(u16 address, u8 value) {
         return;
     }
 
+
     if (BETWEEN(address, 0xFF10, 0xFF3F)) {
-        //ignore sound
+        audio_write(address, value); // 調用音訊模組的寫入函數
         return;
     }
 

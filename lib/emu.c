@@ -140,7 +140,16 @@ int emu_run()
     timer_init();
     cpu_init();
     ppu_init();
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        printf("Failed to initialize SDL: %s\n", SDL_GetError());
+        return -1;
+    }
 
+    if (audio_init() < 0) {
+        printf("Audio initialization failed.\n");
+        SDL_Quit(); // 清理 SDL
+        return -1;
+    }
     ctx.running = true;
     ctx.paused = false;
     ctx.too = false;

@@ -8,6 +8,46 @@
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
+#ifndef AUDIO_H
+#define AUDIO_H
+
+#include <stdint.h>
+#include <SDL.h>
+
+// 音訊寄存器結構
+typedef struct {
+    // 通道1
+    uint8_t NR10;
+    uint8_t NR11;
+    uint8_t NR12;
+    uint8_t NR13;
+    uint8_t NR14;
+    // 通道2
+    uint8_t NR21;
+    uint8_t NR22;
+    uint8_t NR23;
+    uint8_t NR24;
+    // 通道3
+    uint8_t NR30;
+    uint8_t NR31;
+    uint8_t NR32;
+    uint8_t NR33;
+    uint8_t NR34;
+    // 通道4
+    uint8_t NR41;
+    uint8_t NR42;
+    uint8_t NR43;
+    uint8_t NR44;
+} AudioRegisters;
+
+// 函數接口
+int audio_init();
+void audio_cleanup();
+uint8_t audio_read(uint16_t address);
+void audio_write(uint16_t address, uint8_t value);
+
+#endif // AUDIO_H
+
 
 typedef uint8_t u8;
 typedef uint16_t u16;

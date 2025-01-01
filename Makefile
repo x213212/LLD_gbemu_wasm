@@ -4,7 +4,7 @@
 EMSDK_DIR := emsdk
 EMSDK_REPO := https://github.com/emscripten-core/emsdk.git
 EMSDK_VERSION := latest
-EMCC_FLAGS := -I ./include -s USE_SDL=2 -s USE_SDL_GFX=2 --preload-file LG.gb -s ALLOW_MEMORY_GROWTH -s ASYNCIFY -pthread -Wpthreads-mem-growth
+EMCC_FLAGS := -I ./include -O3 -s USE_SDL=2 -s USE_SDL_GFX=2 --preload-file LG.gb -s ALLOW_MEMORY_GROWTH -s ASYNCIFY -pthread -Wpthreads-mem-growth
 SRC_FILES := main.c \
              ./lib/cpu_fetch.c \
              ./lib/interrupts.c \
@@ -26,6 +26,7 @@ SRC_FILES := main.c \
              ./lib/dbg.c \
              ./lib/instructions.c \
              ./lib/ppu.c \
+			 ./lib/audio.c \
              ./lib/stack.c
 OUTPUT := foo.html
 PORT := 5545
